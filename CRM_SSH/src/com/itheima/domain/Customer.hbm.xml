@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	
+	<class name="com.itheima.domain.Customer" table="cst_customer">
+		<id name="cust_id" column="cust_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="cust_name" column="cust_name"/>
+		<property name="cust_user_id" column="cust_user_id"/>
+		<property name="cust_create_id" column="cust_create_id"/>
+		<property name="cust_linkman" column="cust_linkman"/>
+		
+		<property name="cust_phone" column="cust_phone"/>
+		<property name="cust_mobile" column="cust_mobile"/>
+		<property name="cust_address" column="cust_address"/>
+		
+		<property name="cust_zip" column="cust_zip"/>
+		<property name="cust_fax" column="cust_fax"/>
+		<property name="cust_website" column="cust_website"/>
+		<!-- 配置一方 -->
+		<!--
+			set标签name属性：表示集合的名称
+		-->
+		<!-- <set name="linkmans" inverse="true">
+			需要出现子标签
+			外键的字段
+			<key column="lkm_cust_id"/>
+			<one-to-many class="com.itheima.domain.Linkman"/>
+		</set> -->
+		
+		<many-to-one name="source" class="com.itheima.domain.Dict" column="cust_source"/>
+		<many-to-one name="industry" class="com.itheima.domain.Dict" column="cust_industry"/>
+		<many-to-one name="level" class="com.itheima.domain.Dict" column="cust_level"/>
+	</class>
+	
+</hibernate-mapping>    

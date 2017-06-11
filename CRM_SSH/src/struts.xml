@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<!-- 配置包的结构 -->
+	<package name="crm" namespace="/" extends="struts-default">
+	
+		<!-- 配置全局的结果页面 -->
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+		</global-results>
+		
+		<!-- 配置用户的模块-->
+		<action name="customer_*" class="customerAction" method="{1}">
+			<result name="success">/jsp/success.jsp</result>
+		</action>
+		
+		<!-- 配置用户的模块 -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="loginOK">/index.jsp</result>
+		</action>
+	</package>    
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+
+
