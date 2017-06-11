@@ -12,9 +12,9 @@
 			<result name="login" type="redirect">/login.jsp</result>
 		</global-results>
 		
-		<!-- 配置用户的模块-->
+		<!-- 配置客户的模块-->
 		<action name="customer_*" class="customerAction" method="{1}">
-			<result name="success">/jsp/success.jsp</result>
+			<result name="page">/jsp/customer/list.jsp</result>
 		</action>
 		
 		<!-- 配置用户的模块 -->

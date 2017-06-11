@@ -89,19 +89,21 @@
 													<TD>手机</TD>
 													<TD>操作</TD>
 												</TR>
-												<c:forEach items="${list }" var="customer">
+												<c:forEach items="${page.beanList }" var="customer">
 												<TR
 													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-													<TD>${customer.custName }</TD>
-													<TD>${customer.custLevel }</TD>
-													<TD>${customer.custSource }</TD>
-													<TD>${customer.custLinkman }</TD>
-													<TD>${customer.custPhone }</TD>
-													<TD>${customer.custMobile }</TD>
+													<TD>${customer.cust_name }</TD>
+													
+													<TD>${customer.level.dict_item_name }</TD>
+													<TD>${customer.source.dict_item_name }</TD>
+													
+													<TD>${customer.cust_linkman }</TD>	
+													<TD>${customer.cust_phone }</TD>
+													<TD>${customer.cust_mobile }</TD>
 													<TD>
-													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.custId}">修改</a>
+													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
 													&nbsp;&nbsp;
-													<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.custId}">删除</a>
+													<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
 													</TD>
 												</TR>
 												
@@ -113,15 +115,16 @@
 								</TR>
 								
 								<TR>
-									<TD><SPAN id=pagelink>
+									<TD>
+									<%-- <SPAN id=pagelink>
 											<DIV
 												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
 												共[<B>${total}</B>]条记录,[<B>${totalPage}</B>]页
 												,每页显示
 												<select name="pageSize">
 												
-												<%-- <option value="15" <c:if test="${pageSize==1 }">selected</c:if>>1</option>
-												<option value="30" <c:if test="${pageSize==30 }">selected</c:if>>30</option> --%>
+												<option value="15" <c:if test="${pageSize==1 }">selected</c:if>>1</option>
+												<option value="30" <c:if test="${pageSize==30 }">selected</c:if>>30</option>
 												</select>
 												条
 												[<A href="javascript:to_page(${page-1})">前一页</A>]
@@ -133,7 +136,8 @@
 												
 												<input type="button" value="Go" onclick="to_page()"/>
 											</DIV>
-									</SPAN></TD>
+									</SPAN> --%>
+									</TD>
 								</TR>
 							</TBODY>
 						</TABLE>
