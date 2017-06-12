@@ -2,7 +2,7 @@ package com.itheima.domain;
 
 /**
  * 字典表
- * @author Dell
+ * @author Administrator
  */
 public class Dict {
 	
