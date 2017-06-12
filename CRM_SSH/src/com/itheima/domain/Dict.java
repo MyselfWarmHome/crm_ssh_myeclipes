@@ -4,7 +4,7 @@ package com.itheima.domain;
  * 字典表
  * @author Administrator
  */
-public class Dict{
+public class Dict {
 	
 	/**
 	 *  `dict_id` varchar(32) NOT NULL COMMENT '数据字典id(主键)',
