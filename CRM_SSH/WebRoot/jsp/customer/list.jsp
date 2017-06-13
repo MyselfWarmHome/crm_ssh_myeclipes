@@ -9,21 +9,23 @@
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
 <SCRIPT language=javascript>
-	// 提交分页的查询的表单
 	function to_page(page){
 		if(page){
 			$("#page").val(page);
 		}
 		document.customerForm.submit();
+		
 	}
 </SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-	<FORM id="customerForm" name="customerForm" action="${pageContext.request.contextPath }/customer_findByPage.action" method=post>
+	<FORM id="customerForm" name="customerForm"
+		action="${pageContext.request.contextPath }/customerServlet?method=list"
+		method=post>
 		
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
@@ -87,21 +89,19 @@
 													<TD>手机</TD>
 													<TD>操作</TD>
 												</TR>
-												<c:forEach items="${page.beanList}" var="customer">
+												<c:forEach items="${list }" var="customer">
 												<TR
 													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-													<TD>${customer.cust_name }</TD>
-													
-													<TD>${customer.level.dict_item_name }</TD>
-													<TD>${customer.source.dict_item_name }</TD>
-													
-													<TD>${customer.cust_linkman }</TD>
-													<TD>${customer.cust_phone }</TD>
-													<TD>${customer.cust_mobile }</TD>
+													<TD>${customer.custName }</TD>
+													<TD>${customer.custLevel }</TD>
+													<TD>${customer.custSource }</TD>
+													<TD>${customer.custLinkman }</TD>
+													<TD>${customer.custPhone }</TD>
+													<TD>${customer.custMobile }</TD>
 													<TD>
-													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
+													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.custId}">修改</a>
 													&nbsp;&nbsp;
-													<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+													<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.custId}">删除</a>
 													</TD>
 												</TR>
 												
@@ -113,36 +113,27 @@
 								</TR>
 								
 								<TR>
-									<TD>
-										<SPAN id=pagelink>
-											<DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B>${page.totalCount}</B>]条记录，共[<B>${page.totalPage}</B>]页
+									<TD><SPAN id=pagelink>
+											<DIV
+												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
+												共[<B>${total}</B>]条记录,[<B>${totalPage}</B>]页
 												,每页显示
 												<select name="pageSize">
-													<option value="2" <c:if test="${page.pageSize==2 }">selected</c:if>>2</option>
-													<option value="3" <c:if test="${page.pageSize==3 }">selected</c:if>>3</option>
+												
+												<%-- <option value="15" <c:if test="${pageSize==1 }">selected</c:if>>1</option>
+												<option value="30" <c:if test="${pageSize==30 }">selected</c:if>>30</option> --%>
 												</select>
-												
 												条
-												
-												<c:if test="${ page.pageCode > 1 }">
-													[<A href="javascript:to_page(${page.pageCode-1})">前一页</A>]
-												</c:if>
-												
-												<B>${page.pageCode}</B>
-												
-												<c:if test="${ page.pageCode < page.totalPage }">
-													[<A href="javascript:to_page(${page.pageCode+1})">后一页</A>] 
-												</c:if>
-												
+												[<A href="javascript:to_page(${page-1})">前一页</A>]
+												<B>${page}</B>
+												[<A href="javascript:to_page(${page+1})">后一页</A>] 
 												到
-												<input type="text" size="3" id="page" name="pageCode" />
+												<input type="text" size="3" id="page" name="page" />
 												页
 												
 												<input type="button" value="Go" onclick="to_page()"/>
 											</DIV>
-										</SPAN>
-									</TD>
+									</SPAN></TD>
 								</TR>
 							</TBODY>
 						</TABLE>

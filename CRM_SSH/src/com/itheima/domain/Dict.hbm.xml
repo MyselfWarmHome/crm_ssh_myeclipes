@@ -6,8 +6,8 @@
 <hibernate-mapping>
 	
 	<class name="com.itheima.domain.Dict" table="base_dict">
-		<id name="dict_id" column="dict_id">
-			<!-- 换成字符串生成的策略 -->
+		<id name="dict_id" column="user_id">
+			<!-- 字符串的生成策略 -->
 			<generator class="uuid"/>
 		</id>
 		
@@ -18,7 +18,6 @@
 		<property name="dict_sort" column="dict_sort"/>
 		<property name="dict_enable" column="dict_enable"/>
 		<property name="dict_memo" column="dict_memo"/>
-		
 	</class>
 	
 </hibernate-mapping>    
